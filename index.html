@@ -237,6 +237,11 @@
       transition: border-color var(--motion-fast), color var(--motion-fast);
     }
     .legend a:hover { border-color: var(--content-primary); color: var(--content-primary); }
+    .legend a.active {
+      color: #fff;
+      background: var(--brand-500);
+      border-color: var(--brand-500);
+    }
     @media print { .legend { display: none; } }
 
     /* ── Badges ── */
@@ -1098,7 +1103,7 @@
       <p>Questions? Reach out to your AD Group contact and we'll help get the right files together.</p>
     </footer>
 
-    <p class="version">v180626_1</p>
+    <p class="version">v180626_2</p>
 
   </main>
 
@@ -1120,6 +1125,26 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') lb.classList.remove('open');
     });
+
+    // Scroll-spy: pin the current category in the legend
+    const legendLinks = Array.from(document.querySelectorAll('.legend a'));
+    const sections = legendLinks
+      .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+      .filter(Boolean);
+
+    function setActive(id) {
+      legendLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+    }
+
+    const spy = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+      if (visible.length) setActive(visible[0].target.id);
+    }, { rootMargin: '-140px 0px -65% 0px', threshold: 0 });
+
+    sections.forEach(s => spy.observe(s));
+    if (sections.length) setActive(sections[0].id);
   </script>
 </body>
 </html>
