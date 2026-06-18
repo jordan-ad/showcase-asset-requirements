@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Showcase Asset Requirements — Showcase Drop</title>
+  <link rel="icon" type="image/png" href="Showcase%20Logos/showcase_favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ── Blueprint font faces (Aeonik Pro trial → TT Commons fallback) ── */
+    @font-face {
+      font-family: "TT Commons"; font-weight: 400; font-style: normal; font-display: swap;
+      src: url("fonts/TT_Commons_Regular.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "TT Commons"; font-weight: 600; font-style: normal; font-display: swap;
+      src: url("fonts/TT_Commons_DemiBold.ttf") format("truetype");
+    }
+    @font-face {
+      font-family: "TT Commons"; font-weight: 700; font-style: normal; font-display: swap;
+      src: url("fonts/TT_Commons_Bold.ttf") format("truetype");
+    }
+
+    /* ── Blueprint design tokens ── */
+    :root {
+      /* Colour primitives */
+      --colour-blue-100: rgb(235, 242, 255);
+      --colour-blue-500: rgb(1, 112, 203);
+      --colour-blue-700: rgb(0, 57, 157);
+      --colour-blue-800: rgb(0, 33, 110);
+      --colour-gray-100: rgb(250, 250, 251);
+      --colour-gray-200: rgb(238, 238, 241);
+      --colour-gray-300: rgb(209, 209, 215);
+      --colour-gray-600: rgb(89, 92, 105);
+      --colour-gray-800: rgb(51, 53, 65);
+      --colour-gray-900: rgb(33, 34, 44);
+      --colour-gray-1000: rgb(16, 16, 23);
+      --colour-green-100: rgb(230, 250, 239);
+      --colour-green-500: rgb(13, 163, 75);
+      --colour-green-700: rgb(0, 124, 54);
+      --colour-orange-100: rgb(255, 244, 230);
+      --colour-orange-500: rgb(223, 100, 0);
+      --colour-orange-700: rgb(153, 73, 0);
+      --colour-red-100: rgb(255, 230, 230);
+      --colour-red-500: rgb(228, 19, 38);
+      --colour-red-700: rgb(158, 0, 0);
+
+      /* Semantic tokens */
+      --background-primary: #fff;
+      --background-secondary: var(--colour-gray-100);
+      --surface-primary: #fff;
+      --surface-inverse-secondary: var(--colour-gray-900);
+      --content-primary: var(--colour-gray-1000);
+      --content-secondary: var(--colour-gray-800);
+      --content-tertiary: var(--colour-gray-600);
+      --content-inverse-primary: #fff;
+      --content-inverse-secondary: rgba(255,255,255,0.88);
+      --brand-500: var(--colour-blue-500);
+      --brand-700: var(--colour-blue-700);
+      --brand-800: var(--colour-blue-800);
+      --brand-100: var(--colour-blue-100);
+      --border-subtle: rgba(33,34,44,0.08);
+      --border-light: rgba(33,34,44,0.16);
+      --border-medium: rgba(33,34,44,0.32);
+      --positive-100: var(--colour-green-100);
+      --positive-500: var(--colour-green-500);
+      --positive-700: var(--colour-green-700);
+      --warning-100: var(--colour-orange-100);
+      --warning-500: var(--colour-orange-500);
+      --warning-700: var(--colour-orange-700);
+      --negative-100: var(--colour-red-100);
+      --negative-500: var(--colour-red-500);
+      --negative-700: var(--colour-red-700);
+      --motion-fast: 120ms cubic-bezier(0.2,0,0,1);
+      --motion-base: 180ms cubic-bezier(0.2,0,0,1);
+
+      /* Typography */
+      --font-heading: "Aeonik Pro", "TT Commons", "Inter", system-ui, sans-serif;
+      --font-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", "Inter", system-ui, sans-serif;
+
+      /* Border radii */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 16px;
+      --radius-full: 999px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { background: var(--background-secondary); color: var(--content-primary); }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Top bar ── */
+    .header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250,250,251,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 16px 32px;
+      display: flex; align-items: center; gap: 12px;
+      transition: background var(--motion-fast);
+    }
+    .header img { height: 34px; display: block; }
+
+    .header__download {
+      margin-left: auto;
+      font-family: var(--font-body);
+      font-size: 13px; font-weight: 600;
+      color: var(--brand-500);
+      cursor: pointer;
+      padding: 8px 18px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      background: var(--surface-primary);
+      display: inline-flex; align-items: center; gap: 7px;
+      transition: background var(--motion-fast), border-color var(--motion-fast);
+    }
+    .header__download:hover { background: rgba(33,34,44,0.08); border-color: var(--border-medium); }
+    .header__download:active { background: rgba(33,34,44,0.16); }
+    .header__download i { font-size: 16px; line-height: 1; color: var(--brand-500); }
+
+    /* ── Page ── */
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 48px 32px 96px;
+    }
+
+    .page__heading {
+      font-family: var(--font-heading);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .page__lede {
+      font-family: var(--font-body);
+      color: var(--content-secondary);
+      max-width: 540px;
+      margin-bottom: 32px;
+      font-size: 16px;
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 0;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: var(--font-body);
+      color: var(--content-tertiary);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      transition: color var(--motion-fast), border-color var(--motion-fast);
+    }
+
+    .tab-btn:hover { color: var(--content-secondary); }
+
+    .tab-btn.active {
+      color: var(--brand-500);
+      border-bottom-color: var(--brand-500);
+      font-weight: 600;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Section labels (overline) ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.25px;
+      color: var(--content-primary);
+      margin: 40px 0 14px;
+      scroll-margin-top: 132px;
+    }
+    .section-label::before {
+      content: "";
+      width: 4px;
+      height: 18px;
+      background: var(--brand-500);
+      border-radius: var(--radius-full);
+      flex: none;
+    }
+    .section-label:first-of-type { margin-top: 0; }
+
+    /* ── Quick-jump legend ── */
+    .legend {
+      position: sticky; top: 62px; z-index: 40;
+      display: flex; flex-wrap: wrap; gap: 8px;
+      background: rgba(250,250,251,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 12px 0;
+      margin-bottom: 28px;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .legend a {
+      font-family: var(--font-body);
+      font-size: 12px; font-weight: 600;
+      text-decoration: none;
+      color: var(--content-secondary);
+      background: var(--surface-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      padding: 5px 14px;
+      transition: border-color var(--motion-fast), color var(--motion-fast);
+    }
+    .legend a:hover { border-color: var(--content-primary); color: var(--content-primary); }
+    @media print { .legend { display: none; } }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .badge.required    { background: var(--negative-100); color: var(--negative-700); }
+    .badge.recommended { background: var(--warning-100);  color: var(--warning-700); }
+    .badge.optional    { background: var(--positive-100); color: var(--positive-700); }
+
+    .asset > .badge { margin-top: 16px; }
+    .asset--split > .badge { grid-column: 1 / -1; justify-self: start; }
+
+    /* ── Asset cards ── */
+    .asset {
+      background: var(--surface-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 24px 28px;
+      margin-bottom: 12px;
+    }
+
+    .asset-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .asset h2 {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.25px;
+    }
+
+    .asset .description {
+      font-family: var(--font-body);
+      color: var(--content-secondary);
+      margin-bottom: 14px;
+    }
+
+    .formats-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--content-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .format-tag {
+      font-size: 12px;
+      font-weight: 500;
+      font-family: "SF Mono", "Fira Code", monospace;
+      background: var(--background-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 2px 8px;
+      color: var(--content-secondary);
+    }
+
+    .format-tag.preferred {
+      background: var(--brand-100);
+      border-color: rgba(1,112,203,0.24);
+      color: var(--brand-700);
+    }
+
+    .spec-tag {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      background: var(--background-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      padding: 2px 8px;
+      color: var(--content-secondary);
+    }
+
+    .specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    /* ── Two-column card: text left, example right ── */
+    .asset--split {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 28px;
+      align-items: start;
+    }
+    .asset__example a { display: block; line-height: 0; }
+    .asset__example img {
+      display: block; width: 100%;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      transition: border-color var(--motion-fast);
+    }
+    .asset__example a:hover img { border-color: var(--border-medium); }
+
+    @media (max-width: 820px) {
+      .asset--split { grid-template-columns: 1fr; gap: 16px; }
+      .asset__example img { max-width: 420px; }
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 100;
+      display: none; align-items: center; justify-content: center;
+      background: rgba(16,16,23,0.88);
+      padding: 40px; cursor: zoom-out;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 100%; max-height: 100%;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+    @media print { .lightbox { display: none !important; } }
+
+    /* ── Example boxes ── */
+    .example {
+      background: var(--background-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+    }
+
+    .example-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--content-tertiary);
+      margin-bottom: 6px;
+    }
+
+    .example p, .example li {
+      font-family: var(--font-body);
+      font-size: 13.5px;
+      color: var(--content-secondary);
+      line-height: 1.7;
+    }
+
+    .example ul { padding-left: 16px; }
+
+    .tpl-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-body);
+      font-size: 13.5px; font-weight: 600;
+      color: var(--brand-500); text-decoration: none;
+    }
+    .tpl-link:hover { color: var(--brand-700); text-decoration: underline; }
+    .tpl-link i { font-size: 16px; }
+
+    .notes {
+      margin-top: 14px;
+      padding: 12px 14px;
+      background: var(--brand-100);
+      border-left: 3px solid var(--brand-500);
+      border-radius: var(--radius-md);
+    }
+
+    .notes p {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--content-secondary);
+    }
+
+    .notes strong { color: var(--content-primary); }
+
+    .sub-section {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .sub-section h3 {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--content-secondary);
+      margin-bottom: 6px;
+    }
+
+    /* ── Timeline (3D tab) ── */
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .timeline-item {
+      background: var(--background-secondary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .timeline-item .weeks {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--content-primary);
+      line-height: 1.2;
+    }
+
+    .timeline-item .weeks span {
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0;
+      color: var(--content-tertiary);
+    }
+
+    .timeline-item .stories {
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: var(--content-secondary);
+      margin-top: 2px;
+    }
+
+    /* ── Footer (inverse section) ── */
+    footer {
+      margin-top: 64px;
+      background: var(--surface-inverse-secondary);
+      border-radius: var(--radius-xl);
+      padding: 24px 28px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      color: rgba(255,255,255,0.72);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 720px) {
+      .header { padding: 14px 18px; }
+      .page { padding: 32px 18px 64px; }
+      .legend { top: 58px; }
+    }
+
+    /* ── Print ── */
+    .print-title { display: none; }
+
+    @media print {
+      .header { position: static; background: #fff; border-bottom: 1px solid #e5e5e8; backdrop-filter: none; }
+      .header__download { display: none; }
+      .tabs { display: none; }
+      .tab-panel { display: block !important; }
+      .print-title {
+        display: block;
+        font-size: 20px; font-weight: 700;
+        margin: 36px 0 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--content-primary);
+      }
+      .tab-panel:first-of-type .print-title { margin-top: 12px; }
+      .asset, .timeline-item { break-inside: avoid; }
+      .asset--split { display: block; }
+      .asset__example { margin-top: 14px; max-width: 340px; }
+      html, body { background: #fff; }
+      footer { background: #f5f5f5; border-radius: 0; color: #555; }
+    }
+  </style>
+</head>
+<body>
+<header class="header">
+    <img src="Showcase%20Logos/showcase_logo_dark_1280px.png" alt="Showcase">
+    <button class="header__download" id="downloadBtn" type="button">
+      <i class="ph ph-download-simple"></i>
+      Download PDF
+    </button>
+  </header>
+
+  <main class="page">
+    <h1 class="page__heading">Showcase Asset Requirements</h1>
+    <p class="page__lede">Everything we need from you (or your creative agency) to build your Showcase.</p>
+
+    <nav class="legend">
+      <a href="#home">Home</a>
+      <a href="#building">Building</a>
+      <a href="#map">Interactive map</a>
+      <a href="#videos">Videos</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#brochure">Brochure</a>
+      <a href="#team">Team</a>
+      <a href="#shortlist">Shortlist</a>
+      <a href="#external-links">External links</a>
+    </nav>
+
+
+      <p class="section-label" id="home">Home</p>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Hero render</h2>
+        </div>
+        <p class="description">Your signature lifestyle or architectural render. The first thing buyers see when they open Showcase.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/hero-render-example.jpg" target="_blank" rel="noopener"><img src="examples/hero-render-example.jpg" alt="Hero render example"></a></div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Project logo</h2>
+        </div>
+        <p class="description">Your wordmark or monogram with a transparent background. Used across your Showcase and on the interactive map, so send these once and we'll use them everywhere.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.svg (preferred)</span>
+          <span class="format-tag preferred">.png transparent (preferred)</span>
+          <span class="format-tag">.ai</span>
+          <span class="format-tag">.eps</span>
+        </div>
+        <div class="sub-section">
+          <h3>Variants needed</h3>
+          <div class="example">
+            <ul>
+              <li>Full colour / primary version</li>
+              <li>White (reversed) version, for dark backgrounds</li>
+              <li>Black or charcoal version, for light backgrounds</li>
+            </ul>
+          </div>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> SVG is ideal for sharp rendering at any size. PNGs must have real transparency (minimum 300px height) — a JPG with a white background will sit as a box on the hero image and the map.</p>
+        </div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Brand guidelines</h2>
+        </div>
+        <p class="description">Your brand book, style guide, or any reference for fonts, colours and tone. Needed before we build anything.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.pdf (preferred)</span>
+        </div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <p class="section-label" id="building">Building</p>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Project aerial view</h2>
+        </div>
+        <p class="description">An aerial render or photograph of the development in its setting.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/building-aerial.jpg" target="_blank" rel="noopener"><img src="examples/building-aerial.jpg" alt="Aerial view example"></a></div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Building render</h2>
+        </div>
+        <p class="description">A render of the building showing all levels, or as many as possible. Landscape 16:9 works best. This is used for the interactive level selector.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/building-render.jpg" target="_blank" rel="noopener"><img src="examples/building-render.jpg" alt="Building render example"></a></div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Floor plates</h2>
+        </div>
+        <p class="description">One floor plate per level showing the whole floor with every apartment visible.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/floor-plates-example.jpg" target="_blank" rel="noopener"><img src="examples/floor-plates-example.jpg" alt="Floor plate example"></a></div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Floor plans</h2>
+        </div>
+        <p class="description">One plan per individual apartment type.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/floor-plans-example.jpg" target="_blank" rel="noopener"><img src="examples/floor-plans-example.jpg" alt="Floor plan example"></a></div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Level views</h2>
+        </div>
+        <p class="description">Static rendered views looking out from the building. Can be provided per apartment or per level.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/static-view-example.jpg" target="_blank" rel="noopener"><img src="examples/static-view-example.jpg" alt="Level view example"></a></div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Panoramic views</h2>
+        </div>
+        <p class="description">Scrollable 360° views. Can be provided per apartment or per level.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">7680 × 3840 px</span>
+          <span class="spec-tag">2:1 sphere</span>
+        </div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Stock list</h2>
+        </div>
+        <p class="description">A spreadsheet listing every apartment with its configuration, areas, price, and availability. This drives the live pricing and availability shown across your Showcase, so it needs to be accurate and kept up to date.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.csv (preferred)</span>
+          <span class="format-tag">.xlsx</span>
+        </div>
+        <div class="sub-section">
+          <h3>Use our template</h3>
+          <div class="example">
+            <p>Download the template, fill in one row per apartment, and send it back. Keep the column headings exactly as they are so we can import it cleanly.</p>
+            <p style="margin-top: 8px;"><a class="tpl-link" href="Showcase%20Stock%20List.csv" download><i class="ph ph-download-simple"></i> Showcase Stock List template (.csv)</a></p>
+          </div>
+        </div>
+        <div class="sub-section">
+          <h3>Columns we need</h3>
+          <div class="example">
+            <ul>
+              <li><strong>Level</strong> — floor the apartment sits on (e.g. G, 1, 2)</li>
+              <li><strong>Lot No</strong> — unique lot identifier (e.g. G01)</li>
+              <li><strong>Configuration</strong> — plain-text summary (e.g. 1 Bed 1 Bath 1 PR 1 Study 1 Car)</li>
+              <li><strong>Bed · Bath · Powder Room · Study · Car</strong> — a number for each</li>
+              <li><strong>Floorplan Type</strong> — matches your floor plan naming (e.g. Type B)</li>
+              <li><strong>Aspect</strong> — outlook / orientation (e.g. North)</li>
+              <li><strong>Internal Area · External Area · Total Area</strong> — in m²</li>
+              <li><strong>Price</strong> — optional; only fill this in if you want the price shown on Showcase</li>
+              <li><strong>Status</strong> — e.g. Available, Under offer, Sold</li>
+            </ul>
+          </div>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> One row per apartment. Leave the Price cell blank for any apartment you'd rather not display a price for. Send an updated stock list any time availability or pricing changes.</p>
+        </div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <p class="section-label" id="map">Interactive map</p>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Map artwork</h2>
+        </div>
+        <p class="description">The designed neighbourhood map from your creative agency, recropped to 16:9. This is the base we build the interactive version from. It should be the final approved artwork.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.ai layered (preferred)</span>
+          <span class="format-tag">.pdf</span>
+          <span class="format-tag">.indd</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">16:9</span>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> Layered Illustrator (.ai) is strongly preferred, with all layers intact and fonts supplied separately (see Map fonts below). If supplying an InDesign file, include the packaged document fonts and linked files. Your logo for map overlays is already covered under Project logo in Vision — no need to send it again.</p>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/location-base-map.jpg" target="_blank" rel="noopener"><img src="examples/location-base-map.jpg" alt="Map artwork example"></a></div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Map fonts</h2>
+        </div>
+        <p class="description">Any custom or licensed typefaces used in the map artwork. We need the actual font files, not just the name, so the map renders correctly on our end.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.otf (preferred)</span>
+          <span class="format-tag preferred">.ttf (preferred)</span>
+          <span class="format-tag">.woff</span>
+          <span class="format-tag">.woff2</span>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> If your map uses a standard system font (e.g. Helvetica, Arial) you don't need to supply it. If you're unsure, include it anyway.</p>
+        </div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Markers list</h2>
+        </div>
+        <p class="description">Every point of interest you want on the map, grouped by category. Each marker should have a name, and ideally a number that corresponds to a legend on the map. Send via email.</p>
+        <div class="sub-section">
+          <h3>Structure</h3>
+          <div class="example">
+            <p class="example-label">For example</p>
+            <p>Dining: 1. Otto Ristorante, 2. Bar Francine, 3. Gum Bistro</p>
+            <p>Parks: 4. South Bank Parklands, 5. Musgrave Park</p>
+            <p>Education: 6. Brisbane State High, 7. West End State School</p>
+            <p>Shopping: 8. West Village, 9. Montague Markets</p>
+          </div>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> If your map has numbered pins, make sure the numbers on this list match. If there are no numbered pins, please describe what each point refers to so we know what's what.</p>
+        </div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Transport routes</h2>
+        </div>
+        <p class="description">The transport lines you want drawn on the map: bus routes, train lines, tram lines, ferry routes, with stops and stations marked. Send via email.</p>
+        <div class="sub-section">
+          <h3>Structure</h3>
+          <div class="example">
+            <p class="example-label">For example</p>
+            <p>Train: Cleveland line (South Brisbane, Park Road)</p>
+            <p>Bus: Routes 60, 192 along Montague Rd</p>
+            <p>Ferry: CityCat (West End, North Quay terminals)</p>
+            <p>Tram: Route 96 (St Kilda, Melbourne Central)</p>
+          </div>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> If transport routes are already drawn on your map artwork (.ai file), you don't need to supply them separately. Just confirm which routes are included.</p>
+        </div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Masterplan</h2>
+        </div>
+        <p class="description">A site plan or masterplan of the development, recropped to 16:9. Used to show stages, zones, amenities, and named areas as interactive layers. Let us know if you'd like this included and we'll confirm what's needed.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.ai (preferred)</span>
+          <span class="format-tag">.webp</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+        <div class="sub-section">
+          <h3>If included, we'll need:</h3>
+          <div class="example">
+            <ul>
+              <li>Masterplan artwork (.ai preferred, or high-res image)</li>
+              <li>A list of layers/zones and what each one represents (via email)</li>
+              <li>A render or short video per point of interest, if applicable (WEBP or MP4, 16:9)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="sub-section">
+          <h3>Layers list example</h3>
+          <div class="example">
+            <p class="example-label">For example</p>
+            <p>Stage 1: The Tate, The Woodburn, The Ingleburn</p>
+            <p>Stage 2: The Robinson, The Emery, The George</p>
+            <p>Amenities: Pool, Gym, Residents lounge</p>
+          </div>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/masterplan-layer-1.jpg" target="_blank" rel="noopener"><img src="examples/masterplan-layer-1.jpg" alt="Masterplan example"></a></div>
+        <span class="badge optional">Optional</span>
+      </div>
+
+      <p class="section-label" id="videos">Videos</p>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Project video</h2>
+        </div>
+        <p class="description">Your hero project film, plus any other videos you'd like to include: sizzle reels, construction updates, time-lapses, interviews.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.mp4 (preferred)</span>
+          <span class="format-tag">.mov</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">16:9</span>
+          <span class="spec-tag">High resolution</span>
+        </div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <p class="section-label" id="gallery">Gallery</p>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Gallery images</h2>
+        </div>
+        <p class="description">Everything that earns its place: renders, photography, lifestyle shots. Add as many as you like.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+        <div class="specs">
+          <span class="spec-tag">3840 × 2160 px</span>
+          <span class="spec-tag">16:9</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/gallery-example.jpg" target="_blank" rel="noopener"><img src="examples/gallery-example.jpg" alt="Gallery example"></a></div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Gallery sub-menu structure</h2>
+        </div>
+        <p class="description">How you'd like the gallery grouped, ordered, and named. Send via email. If you're not sure, we'll suggest a structure.</p>
+        <div class="sub-section">
+          <h3>Structure</h3>
+          <div class="example">
+            <p class="example-label">For example</p>
+            <p>Architecture: exteriors first, then lobby</p>
+            <p>Amenities: pool, gym, lounge</p>
+            <p>Apartments: 1-bed, 2-bed, penthouse</p>
+            <p>Lifestyle: neighbourhood shots last</p>
+          </div>
+        </div>
+        <span class="badge optional">Optional</span>
+      </div>
+
+      <p class="section-label" id="brochure">Brochure</p>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Brochure and collateral</h2>
+        </div>
+        <p class="description">Your development brochure plus any other PDFs: schedule of finishes, feature sheets, sustainability statements, FAQ booklets.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.pdf (preferred)</span>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> Please export the brochure as spreads, not single pages. Single-page exports flip strangely and lose cross-page imagery.</p>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/brochure-example.jpg" target="_blank" rel="noopener"><img src="examples/brochure-example.jpg" alt="Brochure example"></a></div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <p class="section-label" id="team">Team</p>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Team logos</h2>
+        </div>
+        <p class="description">One transparent PNG logo per contributor: developer, builder, architect, development marketer, and so on.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.png transparent (preferred)</span>
+        </div>
+        <div class="sub-section">
+          <h3>Variants needed per logo</h3>
+          <div class="example">
+            <ul>
+              <li>Full colour version</li>
+              <li>Dark / black version</li>
+              <li>Light / white version</li>
+            </ul>
+          </div>
+        </div>
+        <div class="notes">
+          <p><strong>Note:</strong> PNG with real transparency only. A logo on a white background will sit as a box on the dark team panel.</p>
+        </div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <div class="asset asset--split">
+        <div class="asset__main">
+        <div class="asset-header">
+          <h2>Team images</h2>
+        </div>
+        <p class="description">A headshot or feature image for each contributor.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.webp (preferred)</span>
+          <span class="format-tag">.jpg</span>
+          <span class="format-tag">.png</span>
+        </div>
+      </div>
+        <div class="asset__example"><a href="examples/team-architect.jpg" target="_blank" rel="noopener"><img src="examples/team-architect.jpg" alt="Team image example"></a></div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Team bios</h2>
+        </div>
+        <p class="description">A short paragraph for each contributor. About 80 words each. Send via email or as a document.</p>
+        <div class="notes">
+          <p><strong>Note:</strong> If you don't have bios ready, we can work with a placeholder and update later.</p>
+        </div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <p class="section-label" id="shortlist">Shortlist</p>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Shortlist documents</h2>
+        </div>
+        <p class="description">PDFs loaded into each buyer's shortlist: price lists, EOI forms, contracts of sale. Separate to the brochure.</p>
+        <p class="formats-label">Accepted formats</p>
+        <div class="formats">
+          <span class="format-tag preferred">.pdf (preferred)</span>
+        </div>
+        <span class="badge recommended">Recommended</span>
+      </div>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>Shortlist contacts</h2>
+        </div>
+        <p class="description">Who to attach to the buyer shortlist. Send via email with name, email address, and mobile for each agent.</p>
+        <div class="sub-section">
+          <h3>Per contact</h3>
+          <div class="example">
+            <ul>
+              <li>Full name</li>
+              <li>Email address</li>
+              <li>Mobile number</li>
+            </ul>
+          </div>
+        </div>
+        <span class="badge required">Required</span>
+      </div>
+
+      <p class="section-label" id="external-links">External links</p>
+
+      <div class="asset">
+        <div class="asset-header">
+          <h2>External links</h2>
+        </div>
+        <p class="description">Anything hosted elsewhere that we should link to, like a virtual walkthrough. Send each URL and the label you'd like to use.</p>
+        <div class="sub-section">
+          <h3>Structure</h3>
+          <div class="example">
+            <p class="example-label">For example</p>
+            <p>Walkthrough: https://my.matterport.com/show/?m=...</p>
+          </div>
+        </div>
+        <span class="badge optional">Optional</span>
+      </div>
+
+    <footer>
+      <p>Questions? Reach out to your AD Group contact and we'll help get the right files together.</p>
+    </footer>
+
+  </main>
+
+  <div class="lightbox" id="lightbox"><img alt="Example preview"></div>
+
+  <script>
+    document.getElementById('downloadBtn').addEventListener('click', () => window.print());
+
+    const lb = document.getElementById('lightbox');
+    const lbImg = lb.querySelector('img');
+    document.querySelectorAll('.asset__example a').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        lbImg.src = a.getAttribute('href');
+        lb.classList.add('open');
+      });
+    });
+    lb.addEventListener('click', () => lb.classList.remove('open'));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') lb.classList.remove('open');
+    });
+  </script>
+</body>
+</html>
