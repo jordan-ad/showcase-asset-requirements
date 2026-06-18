@@ -152,7 +152,7 @@
       font-family: var(--font-body);
       color: var(--content-secondary);
       max-width: 640px;
-      margin-bottom: 32px;
+      margin-bottom: 18px;
       font-size: 16px;
     }
 
@@ -222,7 +222,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       padding: 12px 0;
-      margin-bottom: 28px;
+      margin-bottom: 16px;
       border-bottom: 1px solid var(--border-light);
     }
     .legend a {
@@ -261,8 +261,7 @@
     .badge.recommended { background: var(--warning-100);  color: var(--warning-700); }
     .badge.optional    { background: var(--positive-100); color: var(--positive-700); }
 
-    .asset > .badge { margin-top: 16px; }
-    .asset--split > .badge { grid-column: 1 / -1; justify-self: start; }
+    .asset .badge { margin-top: 16px; }
 
     /* ── Asset cards ── */
     .asset {
@@ -357,7 +356,7 @@
       display: grid;
       grid-template-columns: 1fr 360px;
       gap: 28px;
-      align-items: start;
+      align-items: center;
     }
     .asset__example a { display: block; line-height: 0; }
     .asset__example img {
@@ -589,9 +588,9 @@
           <span class="spec-tag">3840 × 2160 px</span>
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge required">Required</span>
       </div>
         <div class="asset__example"><a href="examples/hero-render-example.jpg" target="_blank" rel="noopener"><img src="examples/hero-render-example.jpg" alt="Hero render example"></a></div>
-        <span class="badge required">Required</span>
       </div>
 
       <div class="asset">
@@ -653,9 +652,9 @@
           <span class="spec-tag">3840 × 2160 px</span>
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge required">Required</span>
       </div>
         <div class="asset__example"><a href="examples/building-aerial.jpg" target="_blank" rel="noopener"><img src="examples/building-aerial.jpg" alt="Aerial view example"></a></div>
-        <span class="badge required">Required</span>
       </div>
 
       <div class="asset asset--split">
@@ -675,9 +674,9 @@
           <span class="spec-tag">3840 × 2160 px</span>
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge required">Required</span>
       </div>
         <div class="asset__example"><a href="examples/building-render.jpg" target="_blank" rel="noopener"><img src="examples/building-render.jpg" alt="Building render example"></a></div>
-        <span class="badge required">Required</span>
       </div>
 
       <div class="asset asset--split">
@@ -697,9 +696,9 @@
           <span class="spec-tag">3840 × 2160 px</span>
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge required">Required</span>
       </div>
         <div class="asset__example"><a href="examples/floor-plates-example.jpg" target="_blank" rel="noopener"><img src="examples/floor-plates-example.jpg" alt="Floor plate example"></a></div>
-        <span class="badge required">Required</span>
       </div>
 
       <div class="asset asset--split">
@@ -719,9 +718,9 @@
           <span class="spec-tag">3840 × 2160 px</span>
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge required">Required</span>
       </div>
         <div class="asset__example"><a href="examples/floor-plans-example.jpg" target="_blank" rel="noopener"><img src="examples/floor-plans-example.jpg" alt="Floor plan example"></a></div>
-        <span class="badge required">Required</span>
       </div>
 
       <div class="asset asset--split">
@@ -741,9 +740,9 @@
           <span class="spec-tag">3840 × 2160 px</span>
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge recommended">Recommended</span>
       </div>
         <div class="asset__example"><a href="examples/static-view-example.jpg" target="_blank" rel="noopener"><img src="examples/static-view-example.jpg" alt="Level view example"></a></div>
-        <span class="badge recommended">Recommended</span>
       </div>
 
       <div class="asset">
@@ -822,9 +821,9 @@
         <div class="specs">
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge required">Required</span>
       </div>
         <div class="asset__example"><a href="examples/location-base-map.jpg" target="_blank" rel="noopener"><img src="examples/location-base-map.jpg" alt="Map artwork example"></a></div>
-        <span class="badge required">Required</span>
       </div>
 
       <div class="asset">
@@ -922,9 +921,9 @@
             <p>Amenities: Pool, Gym, Residents lounge</p>
           </div>
         </div>
+        <span class="badge optional">Optional</span>
       </div>
         <div class="asset__example"><a href="examples/masterplan-layer-1.jpg" target="_blank" rel="noopener"><img src="examples/masterplan-layer-1.jpg" alt="Masterplan example"></a></div>
-        <span class="badge optional">Optional</span>
       </div>
 
       <p class="section-label" id="videos">Videos</p>
@@ -966,9 +965,9 @@
           <span class="spec-tag">3840 × 2160 px</span>
           <span class="spec-tag">16:9</span>
         </div>
+        <span class="badge recommended">Recommended</span>
       </div>
         <div class="asset__example"><a href="examples/gallery-example.jpg" target="_blank" rel="noopener"><img src="examples/gallery-example.jpg" alt="Gallery example"></a></div>
-        <span class="badge recommended">Recommended</span>
       </div>
 
       <div class="asset">
@@ -1004,9 +1003,9 @@
         <div class="notes">
           <p><strong>Note:</strong> Please export the brochure as spreads, not single pages. Single-page exports flip strangely and lose cross-page imagery.</p>
         </div>
+        <span class="badge recommended">Recommended</span>
       </div>
         <div class="asset__example"><a href="examples/brochure-example.jpg" target="_blank" rel="noopener"><img src="examples/brochure-example.jpg" alt="Brochure example"></a></div>
-        <span class="badge recommended">Recommended</span>
       </div>
 
       <p class="section-label" id="team">Team</p>
@@ -1048,9 +1047,9 @@
           <span class="format-tag">.jpg</span>
           <span class="format-tag">.png</span>
         </div>
+        <span class="badge recommended">Recommended</span>
       </div>
         <div class="asset__example"><a href="examples/team-architect.jpg" target="_blank" rel="noopener"><img src="examples/team-architect.jpg" alt="Team image example"></a></div>
-        <span class="badge recommended">Recommended</span>
       </div>
 
       <div class="asset">
@@ -1117,7 +1116,7 @@
       <p>Questions? Reach out to your AD Group contact and we'll help get the right files together.</p>
     </footer>
 
-    <p class="version">v180626_6</p>
+    <p class="version">v180626_7</p>
 
   </main>
 
